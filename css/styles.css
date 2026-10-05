@@ -39,6 +39,7 @@
 
   --gutter: clamp(1rem, 4vw, 3rem);
   --max: 76rem;
+  --max-wide: 100rem;
   --radius: 0.5rem;
 
   /* Movimiento */
@@ -270,13 +271,20 @@ a { color: inherit; }
     linear-gradient(90deg, oklch(0.14 0.014 50 / 0.88) 0%, oklch(0.14 0.014 50 / 0.55) 45%, oklch(0.14 0.014 50 / 0) 80%),
     linear-gradient(0deg, oklch(0.14 0.014 50 / 0.7) 0%, oklch(0.14 0.014 50 / 0) 40%);
 }
+/* El hero y el header usan un ancho mayor, alineado a la izquierda */
+.header-inner,
+.hero-content,
+.hero-strip .container {
+  width: min(100% - var(--gutter) * 2, var(--max-wide));
+  margin-inline: auto;
+}
 .hero-content {
   padding-block: 8rem var(--s-5);
   display: grid;
   gap: var(--s-3);
-  max-width: 44rem;
+  justify-items: start;
 }
-.hero h1 { font-size: var(--step-4); }
+.hero h1 { font-size: var(--step-4); max-width: 18ch; }
 .hero h1 em { font-style: normal; color: var(--amber); }
 .hero-lead { font-size: var(--step-1); line-height: 1.5; color: var(--on-dark); max-width: 36rem; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-top: var(--s-1); }
