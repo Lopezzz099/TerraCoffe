@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+/* TerraCoffe — sistema de diseño.
+   Estrategia de color: Committed. Terracota y café tostado cargan la marca; el ámbar marca lo importante.
+   Escena: mañana en Palermo, luz baja entrando por la ventana, taza caliente en la mano. */
+
+@theme {
+  /* Color (OKLCH) */
+  --color-roast: oklch(0.17 0.014 50);
+  --color-roast-2: oklch(0.22 0.016 50);
+  --color-terra: oklch(0.49 0.13 40);
+  --color-terra-deep: oklch(0.4 0.11 38);
+  --color-amber: oklch(0.82 0.15 88);
+  --color-paper: oklch(0.985 0 0);
+  --color-paper-2: oklch(0.955 0.004 60);
+  --color-ink: oklch(0.2 0.012 50);
+  --color-ink-muted: oklch(0.42 0.012 50);
+  --color-on-dark: oklch(0.96 0.008 70);
+  --color-on-dark-muted: oklch(0.78 0.014 60);
+  --color-line-light: oklch(0.86 0.006 60);
+  --color-line-dark: oklch(0.34 0.015 50);
+
+  /* Tipografía */
+  --font-display: var(--font-young-serif), Georgia, serif;
+  --font-sans: var(--font-hanken), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --text-fluid-sm: clamp(0.875rem, 0.85rem + 0.1vw, 0.9375rem);
+  --text-fluid-base: clamp(1rem, 0.97rem + 0.15vw, 1.125rem);
+  --text-fluid-lg: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+  --text-fluid-xl: clamp(1.625rem, 1.4rem + 1.1vw, 2.25rem);
+  --text-fluid-2xl: clamp(2.125rem, 1.7rem + 2vw, 3.5rem);
+  --text-fluid-3xl: clamp(2.5rem, 1.8rem + 3.6vw, 5.25rem);
+
+  /* Espacio y anchos */
+  --spacing-section: clamp(4rem, 3rem + 5vw, 8rem);
+  --container-site: 76rem;
+  --container-wide: 100rem;
+
+  /* Puntos de corte propios */
+  --breakpoint-nav: 52rem;
+  --breakpoint-split: 60rem;
+
+  /* Movimiento */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --animate-rise: rise 900ms var(--ease-out-expo) both;
+  --animate-settle: settle 1800ms var(--ease-out-expo) both;
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(1.25rem); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes settle {
+    from { transform: scale(1.06); }
+    to { transform: scale(1); }
+  }
+}
+
+:root { --gutter: clamp(1rem, 4vw, 3rem); }
+
+/* Contenedores */
+@utility wrap {
+  width: min(100% - var(--gutter) * 2, var(--container-site));
+  margin-inline: auto;
+}
+@utility wrap-wide {
+  width: min(100% - var(--gutter) * 2, var(--container-wide));
+  margin-inline: auto;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: var(--text-fluid-base);
+    line-height: 1.6;
+    color: var(--color-ink);
+    background: var(--color-paper);
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+  p { text-wrap: pretty; }
+  img { display: block; max-width: 100%; height: auto; }
+  a, button { -webkit-tap-highlight-color: oklch(0.82 0.15 88 / 0.25); }
+  :focus-visible {
+    outline: 3px solid var(--color-amber);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  html.nav-locked { overflow: hidden; }
+}
+
+/* Aparición al entrar en pantalla: mejora un contenido que ya es visible por defecto */
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: rise linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Mapa: marcadores y ventanas (Leaflet) */
+.pin { display: block; width: 28px; height: 28px; position: relative; }
+.pin::before { content: ""; position: absolute; inset: 5px; border-radius: 50%; }
+.pin--origin::before { background: var(--color-amber); box-shadow: 0 0 0 5px oklch(0.82 0.15 88 / 0.3); }
+.pin--home::before { background: var(--color-terra); border: 3px solid oklch(0.98 0 0); inset: 3px; }
+.leaflet-container { font-family: var(--font-sans); background: var(--color-roast-2); }
+/* Oscurece el mapa base: invierte los tonos y los acerca a la paleta de la marca */
+.leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(0.85) contrast(0.9) saturate(0.55) sepia(0.25); }
+.leaflet-popup-content-wrapper, .leaflet-popup-tip { background: var(--color-roast); color: var(--color-on-dark); }
+.leaflet-popup-content-wrapper { border-radius: 0.5rem; }
+.leaflet-popup-content { margin: 0.875rem 1rem; }
+.leaflet-container a.leaflet-popup-close-button { color: var(--color-on-dark-muted); width: 2.25rem; height: 2.25rem; font-size: 1.25rem; line-height: 2.25rem; }
+.pop-title, .pop-notes, .pop-dist { display: block; }
+.pop-title { font-family: var(--font-display); font-size: 1.125rem; }
+.pop-notes { color: var(--color-amber); font-size: var(--text-fluid-sm); }
+.pop-dist { color: var(--color-on-dark-muted); font-size: var(--text-fluid-sm); }
+.leaflet-bar a { width: 2.25rem; height: 2.25rem; line-height: 2.25rem; }
+.leaflet-container .leaflet-control-attribution { background: oklch(0.14 0.014 50 / 0.75); color: var(--color-on-dark-muted); }
+.leaflet-control-attribution a { color: var(--color-on-dark); }
