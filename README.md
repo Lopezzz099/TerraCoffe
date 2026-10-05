@@ -2,34 +2,45 @@
 
 Sitio web de TerraCoffe, una cafetería de especialidad ficticia con tostadora propia en Palermo, Ciudad Autónoma de Buenos Aires.
 
-Es un proyecto estático (HTML, CSS y JS), sin build ni dependencias.
+Hecho con **Next.js 16** (App Router), **React 19**, **TypeScript** y **Tailwind CSS 4**. Se publica como sitio estático en GitHub Pages: https://lopezzz099.github.io/TerraCoffe/
 
 ## Páginas
 
-- **Inicio** (`index.html`): hero con video de fondo y estado de apertura en hora de Buenos Aires, menú con filtro por categoría (queda en la URL: `?cat=frios`), accesos a Historia y Origen, el local con horarios y cómo llegar.
-- **Historia** (`historia.html`): el origen del lugar con línea de tiempo.
-- **Origen** (`origen.html`): mapa interactivo (Leaflet y OpenStreetMap) con las tres fincas, las rutas hasta Palermo y la distancia a cada una.
+- **Inicio** (`/`): hero con video de fondo y estado de apertura en hora de Buenos Aires, menú con filtro por categoría (queda en la URL: `?cat=frios`), accesos a Historia y Origen, el local con horarios y cómo llegar.
+- **Historia** (`/historia`): el origen del lugar con línea de tiempo.
+- **Origen** (`/origen`): mapa interactivo (Leaflet y OpenStreetMap) con las tres fincas, las rutas hasta Palermo y la distancia a cada una.
 
-## Correrlo en local
+## Desarrollo
 
 ```bash
-npx serve .
+npm install
+npm run dev
 ```
+
+Abrí http://localhost:3000.
+
+Para generar la versión estática (carpeta `out/`):
+
+```bash
+npm run build
+```
+
+La ruta base `/TerraCoffe` se define con la variable `NEXT_PUBLIC_BASE_PATH` y solo se usa en el despliegue (ver `.github/workflows/deploy.yml`). En local queda vacía.
 
 ## Estructura
 
 ```
-index.html, historia.html, origen.html
-css/styles.css     tokens (OKLCH), tipografía, layout
-js/main.js         navegación móvil, video del hero, filtro del menú, horarios
-js/map.js          mapa de orígenes
-assets/img/        fotos (generadas con IA y de Pexels)
-assets/video/      video del hero (Pexels)
+app/               páginas (layout, inicio, historia, origen) y estilos globales
+  globals.css      tokens de diseño (@theme de Tailwind, colores en OKLCH) y estilos del mapa
+components/        Header, Hero, MenuSection, OriginMap, etc.
+lib/               datos del menú y orígenes, horarios, clases de botones
+public/assets/     fotos (generadas con IA y de Pexels) y video del hero (Pexels)
 PRODUCT.md         contexto de marca y principios de diseño
 ```
 
 ## Notas
 
-- Tipografías: Young Serif y Hanken Grotesk (Google Fonts).
+- Tipografías: Young Serif y Hanken Grotesk, servidas con `next/font`.
 - Imágenes: hero, interior, tostadora y latte generadas con IA; fachada, granos, dulce y filtrado de Pexels (licencia gratuita). El video del hero es de Pexels.
+- El mapa base es el servidor público de OpenStreetMap, con un filtro CSS para oscurecerlo. Para tráfico alto conviene un proveedor de teselas con clave.
 - TerraCoffe y las personas mencionadas son ficticias.
