@@ -48,6 +48,7 @@
   --t-med: 320ms;
 
   /* Capas */
+  --z-scrim: 35;
   --z-header: 40;
   --z-nav: 50;
 }
@@ -210,33 +211,56 @@ a { color: inherit; }
 .nav-toggle[aria-expanded="true"] .icon-close { display: block; }
 
 @media (max-width: 52rem) {
-  .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
+  /* El botón va siempre pegado a la derecha; el <nav> sale del flujo (es un panel fijo) */
+  .nav-toggle { display: inline-flex; align-items: center; justify-content: center; margin-left: auto; }
+  .site-header nav { position: absolute; }
+
+  /* Panel lateral que entra desde la derecha */
   .nav-list {
     position: fixed;
-    inset: 4.5rem 0 auto 0;
+    inset: 4.5rem 0 0 auto;
     z-index: var(--z-nav);
+    width: min(20rem, 86vw);
     flex-direction: column;
     align-items: stretch;
+    justify-content: flex-start;
     gap: 0;
-    padding: var(--s-2) var(--gutter) var(--s-4);
+    padding: var(--s-2) var(--s-3) var(--s-4);
     background: var(--roast);
-    border-top: 1px solid var(--line-dark);
-    transform: translateY(-1rem);
-    opacity: 0;
+    border-left: 1px solid var(--line-dark);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    transform: translateX(100%);
     visibility: hidden;
-    transition: transform var(--t-med) var(--ease-out), opacity var(--t-med) var(--ease-out), visibility 0s linear var(--t-med);
+    transition: transform var(--t-med) var(--ease-out), visibility 0s linear var(--t-med);
   }
   .nav-list.is-open {
     transform: none;
-    opacity: 1;
     visibility: visible;
     transition-delay: 0s;
   }
   .nav-list li { border-bottom: 1px solid var(--line-dark); }
-  .nav-list li:last-child { border: 0; padding-top: var(--s-2); }
+  .nav-list li:last-child { border: 0; padding-top: var(--s-3); }
   .nav-list a:not(.btn) { display: block; padding: 1rem 0; font-size: var(--step-1); }
   .nav-list a:not(.btn)::after { display: none; }
+  .nav-list a[aria-current="true"] { color: var(--amber); }
   .site-header.menu-open { background: var(--roast); }
+
+  /* Fondo oscuro detrás del panel; cierra el menú al tocarlo */
+  .nav-scrim {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-scrim);
+    background: oklch(0.1 0.01 50 / 0.6);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--t-med) var(--ease-out), visibility 0s linear var(--t-med);
+  }
+  .nav-scrim.is-open { opacity: 1; visibility: visible; transition-delay: 0s; }
+  html.nav-locked { overflow: hidden; }
+}
+@media (min-width: 52.01rem) {
+  .nav-scrim { display: none; }
 }
 
 /* Hero */

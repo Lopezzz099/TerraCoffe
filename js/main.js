@@ -9,13 +9,21 @@
   window.addEventListener('scroll', syncHeader, { passive: true });
 
   // Navegación móvil
+  const scrim = document.createElement('div');
+  scrim.className = 'nav-scrim';
+  header.after(scrim);
   const setMenu = (open) => {
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Cerrar menú de navegación' : 'Abrir menú de navegación');
     nav.classList.toggle('is-open', open);
+    scrim.classList.toggle('is-open', open);
     header.classList.toggle('menu-open', open);
+    document.documentElement.classList.toggle('nav-locked', open);
   };
   toggle.addEventListener('click', () => setMenu(toggle.getAttribute('aria-expanded') !== 'true'));
+  scrim.addEventListener('click', () => setMenu(false));
+  // Si se agranda la ventana con el panel abierto, se cierra
+  window.matchMedia('(min-width: 52.01rem)').addEventListener('change', (e) => { if (e.matches) setMenu(false); });
   nav.addEventListener('click', (e) => { if (e.target.closest('a')) setMenu(false); });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
@@ -24,17 +32,28 @@
     }
   });
 
-  // Video del hero: solo en pantallas anchas, sin ahorro de datos ni reducción de movimiento.
-  // En cualquier otro caso queda la foto fija.
+  // Video del hero: en todos los tamaños, salvo ahorro de datos o reducción de movimiento.
+  // En cualquier otro caso (o si el navegador bloquea el autoplay) queda la foto fija.
   const video = document.querySelector('.hero-video');
   if (video) {
     const conn = navigator.connection;
-    const allowed = window.matchMedia('(min-width: 52rem)').matches
-      && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const allowed = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
       && !(conn && conn.saveData);
     if (allowed) {
-      video.addEventListener('playing', () => video.classList.add('is-playing'), { once: true });
-      video.play().catch(() => {});
+      // iOS exige muted como propiedad (no solo como atributo) para permitir autoplay
+      video.muted = true;
+      const show = () => video.classList.add('is-playing');
+      if (!video.paused) show();
+      else video.addEventListener('playing', show, { once: true });
+      const start = () => video.play().catch(() => {});
+      start();
+      // Si el sistema pausó el video (ahorro de batería), reintenta con el primer toque
+      document.addEventListener('touchstart', () => { if (video.paused) start(); }, { once: true, passive: true });
+      // Los navegadores pausan el video con la pestaña oculta; se retoma al volver
+      document.addEventListener('visibilitychange', () => { if (!document.hidden && video.paused) start(); });
+    } else {
+      video.removeAttribute('autoplay');
+      video.pause();
     }
   }
 
