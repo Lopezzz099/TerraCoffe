@@ -112,19 +112,26 @@
     }
   }
 
-  // Link activo en la navegación según la sección visible
-  const links = [...nav.querySelectorAll('a[href^="#"]:not(.btn)')];
-  const sections = links.map((l) => document.querySelector(l.getAttribute('href'))).filter(Boolean);
-  if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        links.forEach((l) => {
-          if (l.getAttribute('href') === `#${entry.target.id}`) l.setAttribute('aria-current', 'true');
-          else l.removeAttribute('aria-current');
-        });
+  // Inicio: marca en el menú la sección que se está viendo.
+  // Se incluyen también las secciones sin enlace propio ("Cómo llegar" es un botón) para apagar el resaltado.
+  const anchors = [...nav.querySelectorAll('a[href^="#"]')];
+  const spy = anchors
+    .map((a) => ({ link: a.classList.contains('btn') ? null : a, section: document.querySelector(a.getAttribute('href')) }))
+    .filter((s) => s.section);
+  if (spy.length) {
+    const update = () => {
+      // Sección activa: la última cuyo borde superior ya pasó el 40% de la altura de la ventana
+      const line = window.innerHeight * 0.4;
+      let current = null;
+      spy.forEach((s) => { if (s.section.getBoundingClientRect().top <= line) current = s; });
+      spy.forEach((s) => {
+        if (!s.link) return;
+        if (s === current) s.link.setAttribute('aria-current', 'true');
+        else s.link.removeAttribute('aria-current');
       });
-    }, { rootMargin: '-45% 0px -50% 0px' });
-    sections.forEach((s) => io.observe(s));
+    };
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
   }
 })();

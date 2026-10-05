@@ -195,7 +195,7 @@ a { color: inherit; }
   transition: transform var(--t-med) var(--ease-out);
 }
 .nav-list a:not(.btn):hover::after,
-.nav-list a[aria-current="true"]::after { transform: scaleX(1); }
+.nav-list a[aria-current]::after { transform: scaleX(1); }
 .nav-list .btn { min-height: 2.75rem; padding: 0.5rem 1.25rem; }
 
 .nav-toggle {
@@ -246,7 +246,7 @@ a { color: inherit; }
   .nav-list li:last-child { border: 0; padding-top: var(--s-3); }
   .nav-list a:not(.btn) { display: block; padding: 1rem 0; font-size: var(--step-1); }
   .nav-list a:not(.btn)::after { display: none; }
-  .nav-list a[aria-current="true"] { color: var(--amber); }
+  .nav-list a[aria-current] { color: var(--amber); }
   .site-header.menu-open { background: var(--roast); }
 
   /* Fondo oscuro detrás del panel; cierra el menú al tocarlo */
