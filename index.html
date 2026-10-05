@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TerraCoffe | Café de especialidad en Palermo, Buenos Aires</title>
+  <meta name="description" content="Café de especialidad con tostadora propia en Palermo, CABA. Granos de Colombia, Etiopía y Brasil tostados cada semana. Mirá el menú y vení a probarlos.">
+  <meta name="theme-color" content="#2a1c15">
+  <meta property="og:title" content="TerraCoffe | Café de especialidad en Palermo">
+  <meta property="og:description" content="Tostamos en Villa Crespo y servimos en Palermo. Café de especialidad, pastelería de la casa y mesas con sol de mañana.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/img/hero.jpg">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Young+Serif&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="wordmark" href="#top" aria-label="TerraCoffe, inicio">
+        <svg viewBox="0 0 32 32" aria-hidden="true" fill="currentColor"><ellipse cx="16" cy="16" rx="8" ry="10.5" transform="rotate(35 16 16)"/><path d="M11 24c3-4 7-9 10-16" stroke="#2a1c15" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>
+        TerraCoffe
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Abrir menú de navegación">
+        <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <nav aria-label="Principal">
+        <ul class="nav-list" id="nav">
+          <li><a href="#historia">Historia</a></li>
+          <li><a href="#origen">Origen</a></li>
+          <li><a href="#menu">Menú</a></li>
+          <li><a href="#local">El local</a></li>
+          <li><a class="btn btn--amber" href="#visitanos">Cómo llegar</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-media">
+        <img src="assets/img/hero.jpg" width="1800" height="1005" alt="Las manos de un barista sirven un espresso desde el portafiltro en una taza de cerámica, sobre una barra de nogal junto a la ventana." fetchpriority="high">
+      </div>
+      <div class="container hero-content">
+        <h1 id="hero-title">Café de tostadora propia, <em>servido en Palermo.</em></h1>
+        <p class="hero-lead">Tostamos cada semana en Villa Crespo. El grano que llega a tu taza tiene menos de diez días.</p>
+        <div class="hero-actions">
+          <a class="btn btn--amber" href="#menu">Ver el menú</a>
+          <a class="btn btn--ghost" href="#visitanos">Cómo llegar</a>
+        </div>
+      </div>
+      <div class="hero-strip">
+        <div class="container">
+          <span class="status" id="status" data-open="true">Lun a vie 7:30 a 20:00</span>
+          <span>Honduras 4850, Palermo, CABA</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section story" id="historia" aria-labelledby="story-title">
+      <div class="container story-grid">
+        <div>
+          <div class="story-copy">
+            <h2 id="story-title">Empezó con una tostadora usada y un garaje.</h2>
+            <p>En 2016, Lucía Ferrer y Martín Aguirre compraron una tostadora de seis kilos en un remate y la instalaron en un garaje de Villa Crespo. Ella venía de trabajar en una cafetería de Medellín. Él había pasado diez años en logística de exportación. Tostaban de madrugada y repartían las bolsas en bicicleta a seis bares del barrio.</p>
+            <p>Los clientes empezaron a preguntar dónde podían tomar ese café ya preparado. En 2019 abrimos el local de Honduras, con la barra mirando a la ventana para que el que pasa vea cómo se hace.</p>
+            <p>Hoy somos doce personas. Seguimos tostando en el garaje, en lotes chicos, y probamos cada lote a ciegas antes de ponerlo a la venta.</p>
+          </div>
+          <ol class="timeline">
+            <li class="reveal">
+              <span class="year">2016</span>
+              <div><h3>El garaje de Villa Crespo</h3><p>Primeras tostadas de madrugada y seis clientes que recibían las bolsas en bici.</p></div>
+            </li>
+            <li class="reveal">
+              <span class="year">2019</span>
+              <div><h3>Se abre Honduras 4850</h3><p>Una barra, ocho mesas y la máquina de espresso frente a la ventana.</p></div>
+            </li>
+            <li class="reveal">
+              <span class="year">2023</span>
+              <div><h3>Compra directa a productores</h3><p>Dejamos los intermediarios y trabajamos con tres fincas que visitamos cada año.</p></div>
+            </li>
+          </ol>
+        </div>
+        <figure class="story-figure reveal">
+          <img src="assets/img/tostadora.jpg" width="1800" height="2234" loading="lazy" alt="Una tostadora de tambor de acero y una bandeja de enfriado con granos recién tostados, bajo luz cálida.">
+          <figcaption>La tostadora de seis kilos, la misma de 2016.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section origins" id="origen" aria-labelledby="origin-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="origin-title">Tres fincas, tres tazas distintas.</h2>
+          <p>Cambiamos de lote según la cosecha. Estas son las tres que hoy están en la barra.</p>
+        </div>
+        <ul class="origin-list">
+          <li class="reveal">
+            <h3>Huila, Colombia</h3>
+            <p class="notes">Caramelo, naranja, cacao</p>
+            <p>Finca de Don Alirio Gómez, a 1.750 metros. Lavado, tueste medio. Es la base de nuestro espresso.</p>
+          </li>
+          <li class="reveal">
+            <h3>Guji, Etiopía</h3>
+            <p class="notes">Durazno, jazmín, té negro</p>
+            <p>Cooperativa de pequeños productores. Natural, tueste claro. Lo servimos en filtrados.</p>
+          </li>
+          <li class="reveal">
+            <h3>Mogiana, Brasil</h3>
+            <p class="notes">Avellana, chocolate, miel</p>
+            <p>Fazenda de familia en Minas Gerais. Tueste medio-oscuro, ideal para cafés con leche.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section menu" id="menu" aria-labelledby="menu-title">
+      <div class="container menu-layout">
+        <div class="menu-aside reveal">
+          <img src="assets/img/latte.jpg" width="1800" height="2234" loading="lazy" alt="Un flat white con rosetta de leche en una taza de cerámica terracota, sobre una mesa de mármol gris.">
+        </div>
+        <div class="menu-body">
+          <div class="section-head">
+            <h2 id="menu-title">El menú</h2>
+            <p>Café de la casa, pastelería hecha en el local y algo salado para el mediodía.</p>
+          </div>
+
+          <div class="chips" role="group" aria-label="Filtrar el menú por categoría" id="chips">
+            <button class="chip" type="button" data-filter="all" aria-pressed="true">Todo</button>
+            <button class="chip" type="button" data-filter="cafe" aria-pressed="false">Café</button>
+            <button class="chip" type="button" data-filter="filtrados" aria-pressed="false">Filtrados</button>
+            <button class="chip" type="button" data-filter="frios" aria-pressed="false">Fríos</button>
+            <button class="chip" type="button" data-filter="dulce" aria-pressed="false">Dulce</button>
+            <button class="chip" type="button" data-filter="salado" aria-pressed="false">Salado</button>
+          </div>
+
+          <div class="menu-group" data-group="cafe">
+            <h3>Café</h3>
+            <ul class="menu-items">
+              <li class="menu-item"><div class="item-head"><span class="item-name">Espresso</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$3.200</span></div><p class="item-desc">Doble, con el blend de Huila y Mogiana.</p></li>
+              <li class="menu-item"><div class="item-head"><span class="item-name">Cortado</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$3.600</span></div><p class="item-desc">Espresso con un toque de leche texturizada.</p></li>
+              <li class="menu-item"><div class="item-head"><span class="item-name">Flat white<span class="tag">Favorito</span></span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$4.800</span></div><p class="item-desc">Doble ristretto y leche sedosa. Intenso y cremoso.</p></li>
+              <li class="menu-item"><div class="item-head"><span class="item-name">Latte</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$5.200</span></div><p class="item-desc">Espresso con mucha leche, en taza grande.</p></li>
+              <li class="menu-item"><div class="item-head"><span class="item-name">Capuchino</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$5.200</span></div><p class="item-desc">Con espuma firme y cacao amargo por encima.</p></li>
+              <li class="menu-item"><div class="item-head"><span class="item-name">Mocaccino</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$5.600</span></div><p class="item-desc">Latte con chocolate semiamargo derretido.</p></li>
+            </ul>
+          </div>
+
+          <div class="menu-group" data-group="filtrados">
+            <h3>Filtrados</h3>
+            <ul class="menu-items">
+              <li class="menu-item"><div class="item-head"><span class="item-name">V60 de Guji</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$5.900</span></div><p class="item-desc">Etiopía natural. Durazno y jazmín, cuerpo liviano.</p></li>
+              <li class="menu-item"><div class="item-head"><span class="item-name">Chemex para dos</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$9.800</span></div><p class="item-desc">Tres tazas de café limpio, a elección del origen de la semana.</p></li>
+            </ul>
+          </div>
+
+          <div class="menu-group" data-group="frios">
+            <h3>Fríos</h3>
+            <ul class="menu-items">
+              <li class="menu-item"><div class="item-head"><span class="item-name">Cold brew</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$5.500</span></div><p class="item-desc">Infusionado 18 horas en frío, con hielo.</p></li>
+              <li class="menu-item"><div class="item-head"><span class="item-name">Tónico de café</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$6.200</span></div><p class="item-desc">Espresso sobre agua tónica, hielo y una rodaja de naranja.</p></li>
+            </ul>
+          </div>
+
+          <div class="menu-group" data-group="dulce">
+            <h3>Dulce</h3>
+            <ul class="menu-items">
+              <li class="menu-item"><div class="item-head"><span class="item-name">Medialunas (x2)<span class="tag">Del día</span></span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$3.800</span></div><p class="item-desc">De manteca, almibaradas, horneadas cada mañana.</p></li>
+              <li class="menu-item"><div class="item-head"><span class="item-name">Budín de limón</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$4.900</span></div><p class="item-desc">Húmedo, con glaseado cítrico.</p></li>
+              <li class="menu-item"><div class="item-head"><span class="item-name">Brownie de chocolate</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$5.200</span></div><p class="item-desc">Con nueces y sal en escamas.</p></li>
+              <li class="menu-item"><div class="item-head"><span class="item-name">Alfajor de maicena</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$2.800</span></div><p class="item-desc">Dulce de leche y coco rallado.</p></li>
+            </ul>
+          </div>
+
+          <div class="menu-group" data-group="salado">
+            <h3>Salado</h3>
+            <ul class="menu-items">
+              <li class="menu-item"><div class="item-head"><span class="item-name">Tostado de jamón y queso</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$9.500</span></div><p class="item-desc">Pan de miga artesanal, jamón cocido natural y queso fontina.</p></li>
+              <li class="menu-item"><div class="item-head"><span class="item-name">Tostada con palta</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$10.800</span></div><p class="item-desc">Pan de masa madre, palta, huevo poché y semillas.</p></li>
+            </ul>
+          </div>
+
+          <p class="menu-note">Precios en pesos argentinos. Leche de avena o almendras, $800 extra. Preguntá por el origen de la semana en barra.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="place" id="local" aria-labelledby="place-title">
+      <div class="place-media">
+        <img src="assets/img/interior.jpg" width="1800" height="1005" loading="lazy" alt="Interior del local: paredes terracota, mesas de roble con sillas de madera curvada, plantas colgantes y una lámpara de bronce junto a la ventana.">
+      </div>
+      <div class="container place-grid">
+        <div class="place-copy">
+          <h2 id="place-title">Mesas con sol de mañana.</h2>
+          <p>Ocho mesas, una barra y una ventana grande sobre Honduras. Se puede venir a trabajar con la notebook o a quedarse con un libro. Hay enchufes en todas las mesas y la red se llama TerraCoffe.</p>
+          <ul class="perks">
+            <li>Wi-Fi</li>
+            <li>Enchufes en las mesas</li>
+            <li>Pet friendly</li>
+            <li>Bicicletero</li>
+            <li>Granos para llevar</li>
+          </ul>
+        </div>
+        <div class="hours">
+          <h3>Horarios</h3>
+          <dl id="hours">
+            <div class="row" data-days="1,2,3,4,5"><dt>Lunes a viernes</dt><dd>7:30 a 20:00</dd></div>
+            <div class="row" data-days="6,0"><dt>Sábados y domingos</dt><dd>8:30 a 21:00</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="section visit" id="visitanos" aria-labelledby="visit-title">
+      <div class="container visit-grid">
+        <div>
+          <h2 id="visit-title">Pasá por Honduras.</h2>
+          <address>Honduras 4850, Palermo<br>Ciudad Autónoma de Buenos Aires<br>A dos cuadras de la plaza Armenia y de la estación Plaza Italia del subte D.</address>
+        </div>
+        <div class="visit-actions">
+          <a class="btn btn--dark" href="https://www.google.com/maps/search/?api=1&amp;query=Honduras+4850+Palermo+Buenos+Aires" target="_blank" rel="noopener">Abrir en Google Maps</a>
+          <a class="btn btn--ghost" href="#menu">Ver el menú</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="wordmark" href="#top">TerraCoffe</a>
+      <p>Sitio de demostración. TerraCoffe es una marca ficticia.</p>
+      <p>&copy; 2026 TerraCoffe</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
