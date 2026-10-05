@@ -125,6 +125,9 @@ a { color: inherit; }
   text-decoration: none;
   cursor: pointer;
   border: 2px solid transparent;
+  background: transparent;
+  font-family: inherit;
+  line-height: 1.2;
   transition: background-color var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out), border-color var(--t-fast) var(--ease-out), transform var(--t-fast) var(--ease-out);
   touch-action: manipulation;
 }
@@ -365,7 +368,7 @@ a { color: inherit; }
   align-items: start;
 }
 .story-copy { display: grid; gap: var(--s-3); max-width: 38rem; }
-.story-copy h2 { font-size: var(--step-3); }
+.story-copy h1, .story-copy h2 { font-size: var(--step-3); }
 .story-copy p { font-size: var(--step-0); line-height: 1.7; color: oklch(0.97 0.01 60); }
 .story-figure { margin: 0; position: relative; }
 .story-figure img {
@@ -396,7 +399,7 @@ a { color: inherit; }
   border-bottom: 1px solid oklch(0.96 0.01 60 / 0.4);
 }
 .timeline .year { font-family: var(--font-display); font-size: var(--step-2); color: var(--amber); line-height: 1; }
-.timeline h3 { font-size: var(--step-1); margin-bottom: 0.25rem; }
+.timeline h2, .timeline h3 { font-size: var(--step-1); margin-bottom: 0.25rem; }
 .timeline p { color: oklch(0.97 0.01 60); max-width: 34rem; }
 
 @media (min-width: 60rem) {
@@ -404,24 +407,133 @@ a { color: inherit; }
   .story-figure { position: sticky; top: 6rem; }
 }
 
-/* Origen */
-.origins { background: var(--roast); color: var(--on-dark); }
-.origins .section-head p { color: var(--on-dark-muted); }
-.origin-figure { margin: 0 0 var(--s-5); }
-.origin-figure img { width: 100%; aspect-ratio: 21 / 9; object-fit: cover; border-radius: var(--radius); }
-.origin-list { list-style: none; margin: 0; padding: 0; display: grid; }
-.origin-list li {
-  display: grid;
-  gap: var(--s-1) var(--s-4);
-  padding-block: var(--s-4);
-  border-top: 1px solid var(--line-dark);
+/* Páginas interiores */
+.page-start { padding-top: calc(var(--s-6) + 4.5rem); }
+
+.page-hero {
+  position: relative;
+  min-height: 52svh;
+  display: flex;
+  align-items: flex-end;
+  color: var(--on-dark);
+  background: var(--roast);
+  isolation: isolate;
+  overflow: clip;
 }
-.origin-list li:last-child { border-bottom: 1px solid var(--line-dark); }
-.origin-list h3 { font-size: var(--step-2); }
-.origin-list .notes { color: var(--amber); font-weight: 600; }
-.origin-list p { color: var(--on-dark-muted); max-width: 32rem; }
+.page-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.page-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(0deg, oklch(0.14 0.014 50 / 0.88) 0%, oklch(0.14 0.014 50 / 0.45) 55%, oklch(0.14 0.014 50 / 0.3) 100%);
+}
+.page-hero-content {
+  width: min(100% - var(--gutter) * 2, var(--max-wide));
+  margin-inline: auto;
+  padding-top: calc(4.5rem + var(--s-5));
+  padding-bottom: var(--s-5);
+  display: grid;
+  gap: var(--s-2);
+  justify-items: start;
+}
+.page-hero h1 { font-size: var(--step-4); max-width: 18ch; }
+.page-hero p { font-size: var(--step-1); line-height: 1.5; max-width: 38rem; }
+
+/* Cierre de las páginas interiores */
+.next { background: var(--terra); color: oklch(0.98 0.006 60); padding-block: var(--s-5); }
+.next-grid { display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-4); align-items: center; justify-content: space-between; }
+.next h2 { font-size: var(--step-3); }
+.next-actions { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+.next .btn--ghost { color: oklch(0.98 0.006 60); border-color: oklch(0.98 0.006 60 / 0.7); }
+
+/* Origen: mapa + lista */
+.origins { background: var(--roast); color: var(--on-dark); padding-block: var(--s-5) var(--s-6); }
+.map-layout { display: grid; gap: var(--s-4); }
+.map-wrap { display: grid; gap: var(--s-2); justify-items: start; }
+.map {
+  width: 100%;
+  height: clamp(22rem, 62svh, 40rem);
+  border-radius: var(--radius);
+  background: var(--roast-2);
+  overflow: hidden;
+  z-index: 0;
+}
+.map-fallback { padding: var(--s-3); color: var(--on-dark-muted); }
+.origin-panel { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-2); align-content: start; }
+.origin-item {
+  display: grid;
+  gap: var(--s-1);
+  justify-items: start;
+  padding: var(--s-3);
+  border: 1px solid var(--line-dark);
+  border-radius: var(--radius);
+  transition: background-color var(--t-med) var(--ease-out), border-color var(--t-med) var(--ease-out);
+}
+.origin-item.is-active { background: var(--roast-2); border-color: var(--amber); }
+.origin-item h2 { font-size: var(--step-2); }
+.origin-item .notes { color: var(--amber); font-weight: 600; }
+.origin-item p { color: var(--on-dark-muted); max-width: 32rem; }
+.origin-item .facts { margin: var(--s-1) 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-1) var(--s-3); width: 100%; }
+.facts dt { font-size: var(--step--1); color: var(--on-dark-muted); }
+.facts dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
+.origin-go { min-height: 2.75rem; padding: 0.5rem 1.25rem; margin-top: var(--s-1); }
+
+@media (min-width: 60rem) {
+  .map-layout { grid-template-columns: 1.5fr 1fr; gap: var(--s-5); align-items: start; }
+  .map-wrap { position: sticky; top: 6rem; }
+  .map { height: clamp(28rem, 72svh, 44rem); }
+}
+
+/* Marcadores y ventanas del mapa */
+.pin { display: block; width: 28px; height: 28px; position: relative; }
+.pin::before { content: ""; position: absolute; inset: 5px; border-radius: 50%; }
+.pin--origin::before { background: var(--amber); box-shadow: 0 0 0 5px oklch(0.82 0.15 88 / 0.3); }
+.pin--home::before { background: var(--terra); border: 3px solid oklch(0.98 0 0); inset: 3px; }
+.leaflet-container { font-family: var(--font-body); background: var(--roast-2); }
+/* Oscurece el mapa base: invierte los tonos y los acerca a la paleta de la marca */
+.leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(0.85) contrast(0.9) saturate(0.55) sepia(0.25); }
+.leaflet-popup-content-wrapper, .leaflet-popup-tip { background: var(--roast); color: var(--on-dark); }
+.leaflet-popup-content-wrapper { border-radius: var(--radius); }
+.leaflet-popup-content { margin: 0.875rem 1rem; }
+.pop-title, .pop-notes, .pop-dist { display: block; }
+.leaflet-container a.leaflet-popup-close-button { color: var(--on-dark-muted); width: 2.25rem; height: 2.25rem; font-size: 1.25rem; line-height: 2.25rem; }
+.pop-title { font-family: var(--font-display); font-weight: 400; font-size: 1.125rem; }
+.pop-notes { color: var(--amber); font-size: var(--step--1); }
+.pop-dist { color: var(--on-dark-muted); font-size: var(--step--1); }
+.leaflet-bar a { width: 2.25rem; height: 2.25rem; line-height: 2.25rem; }
+.leaflet-container .leaflet-control-attribution { background: oklch(0.14 0.014 50 / 0.75); color: var(--on-dark-muted); }
+.leaflet-control-attribution a { color: var(--on-dark); }
+
+/* Inicio: accesos a las páginas de historia y origen */
+.discover { display: grid; background: var(--roast); }
+.discover-card {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: clamp(18rem, 40vw, 26rem);
+  padding: var(--s-4) var(--gutter);
+  color: var(--on-dark);
+  text-decoration: none;
+  overflow: clip;
+  isolation: isolate;
+}
+.discover-card img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; transition: transform 900ms var(--ease-out); }
+.discover-card::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, oklch(0.14 0.014 50 / 0.85) 0%, oklch(0.14 0.014 50 / 0.2) 70%); }
+.discover-card:hover img { transform: scale(1.04); }
+.discover-text { display: grid; gap: 0.25rem; max-width: 26rem; }
+.discover-title { font-family: var(--font-display); font-size: var(--step-2); line-height: 1.1; }
+.discover-title::after { content: " \2192"; color: var(--amber); }
+.discover-sub { color: var(--on-dark); font-size: var(--step--1); }
 @media (min-width: 52rem) {
-  .origin-list li { grid-template-columns: 1fr 1fr 1.2fr; align-items: baseline; }
+  .discover { grid-template-columns: 1fr 1fr; }
 }
 
 /* Menú */
