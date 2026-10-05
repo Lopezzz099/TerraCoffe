@@ -262,13 +262,24 @@ a { color: inherit; }
   object-fit: cover;
   object-position: 62% center;
 }
+/* El video se superpone a la foto y aparece cuando ya está reproduciendo */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 900ms var(--ease-out);
+}
+.hero-video.is-playing { opacity: 1; }
 .hero::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(90deg, oklch(0.14 0.014 50 / 0.88) 0%, oklch(0.14 0.014 50 / 0.55) 45%, oklch(0.14 0.014 50 / 0) 80%),
+    linear-gradient(90deg, oklch(0.14 0.014 50 / 0.9) 0%, oklch(0.14 0.014 50 / 0.7) 50%, oklch(0.14 0.014 50 / 0) 85%),
     linear-gradient(0deg, oklch(0.14 0.014 50 / 0.7) 0%, oklch(0.14 0.014 50 / 0) 40%);
 }
 /* El hero y el header usan un ancho mayor, alineado a la izquierda */

@@ -24,6 +24,20 @@
     }
   });
 
+  // Video del hero: solo en pantallas anchas, sin ahorro de datos ni reducción de movimiento.
+  // En cualquier otro caso queda la foto fija.
+  const video = document.querySelector('.hero-video');
+  if (video) {
+    const conn = navigator.connection;
+    const allowed = window.matchMedia('(min-width: 52rem)').matches
+      && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      && !(conn && conn.saveData);
+    if (allowed) {
+      video.addEventListener('playing', () => video.classList.add('is-playing'), { once: true });
+      video.play().catch(() => {});
+    }
+  }
+
   // Filtro del menú
   const chips = document.querySelectorAll('.chip');
   const groups = document.querySelectorAll('.menu-group');
