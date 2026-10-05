@@ -27,13 +27,23 @@
   // Filtro del menú
   const chips = document.querySelectorAll('.chip');
   const groups = document.querySelectorAll('.menu-group');
+  const applyFilter = (filter) => {
+    chips.forEach((c) => c.setAttribute('aria-pressed', String(c.dataset.filter === filter)));
+    groups.forEach((g) => { g.hidden = filter !== 'all' && g.dataset.group !== filter; });
+  };
   chips.forEach((chip) => {
     chip.addEventListener('click', () => {
       const filter = chip.dataset.filter;
-      chips.forEach((c) => c.setAttribute('aria-pressed', String(c === chip)));
-      groups.forEach((g) => { g.hidden = filter !== 'all' && g.dataset.group !== filter; });
+      applyFilter(filter);
+      // La categoría queda en la URL para poder compartir el menú filtrado
+      const url = new URL(window.location.href);
+      if (filter === 'all') url.searchParams.delete('cat');
+      else url.searchParams.set('cat', filter);
+      history.replaceState(null, '', url);
     });
   });
+  const initial = new URLSearchParams(window.location.search).get('cat');
+  if (initial && [...chips].some((c) => c.dataset.filter === initial)) applyFilter(initial);
 
   // Horarios en hora de Buenos Aires
   const schedule = {

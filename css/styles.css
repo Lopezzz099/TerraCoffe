@@ -71,6 +71,8 @@ body {
 
 img { display: block; max-width: 100%; height: auto; }
 
+a, button { -webkit-tap-highlight-color: oklch(0.82 0.15 88 / 0.25); }
+
 h1, h2, h3 {
   font-family: var(--font-display);
   font-weight: 400;
