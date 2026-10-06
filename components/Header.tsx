@@ -81,8 +81,9 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-40 text-on-dark transition-[background-color,box-shadow] duration-300 ease-out-expo ${
-          solid ? 'bg-roast shadow-[0_1px_0_var(--color-line-dark)]' : ''
+        // En celular el fondo es siempre sólido; la transparencia sobre el hero solo se usa en escritorio
+        className={`fixed inset-x-0 top-0 z-40 bg-roast text-on-dark shadow-[0_1px_0_var(--color-line-dark)] transition-[background-color,box-shadow] duration-300 ease-out-expo ${
+          solid ? '' : 'nav:bg-transparent nav:shadow-none'
         }`}
       >
         <div className="wrap-wide flex min-h-[4.5rem] items-center justify-between gap-6">
