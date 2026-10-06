@@ -1,10 +1,17 @@
-// Ruta base para publicar en GitHub Pages (en local queda vacía)
+// Ruta base opcional (por si se publica en un subdirectorio). En Vercel queda vacía.
 export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 
 /** Prefija con la ruta base los archivos de /public (imágenes, video). */
 export const asset = (path: string) => `${BASE_PATH}${path}`;
 
-export const SITE_URL = 'https://lopezzz099.github.io/TerraCoffe';
+/**
+ * URL pública del sitio, usada para las vistas previas al compartir (Open Graph).
+ * Prioridad: NEXT_PUBLIC_SITE_URL (dominio propio) > dominio de producción que Vercel define en cada build > local.
+ */
+const vercelHost = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+export const SITE_URL = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? (vercelHost ? `https://${vercelHost}` : 'http://localhost:3000')
+).replace(/\/$/, '');
 
 export const ADDRESS = {
   street: 'Honduras 4850',

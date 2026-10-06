@@ -2,7 +2,7 @@
 
 Sitio web de TerraCoffe, una cafetería de especialidad ficticia con tostadora propia en Palermo, Ciudad Autónoma de Buenos Aires.
 
-Hecho con **Next.js 16** (App Router), **React 19**, **TypeScript** y **Tailwind CSS 4**. Se publica como sitio estático en GitHub Pages: https://lopezzz099.github.io/TerraCoffe/
+Hecho con **Next.js 16** (App Router), **React 19**, **TypeScript** y **Tailwind CSS 4**. Se publica en Vercel.
 
 ## Páginas
 
@@ -25,7 +25,12 @@ Para generar la versión estática (carpeta `out/`):
 npm run build
 ```
 
-La ruta base `/TerraCoffe` se define con la variable `NEXT_PUBLIC_BASE_PATH` y solo se usa en el despliegue (ver `.github/workflows/deploy.yml`). En local queda vacía.
+## Variables de entorno
+
+Ninguna es obligatoria (ver `.env.example`).
+
+- `NEXT_PUBLIC_SITE_URL`: dominio propio, para las vistas previas al compartir. Si no se define, en Vercel se usa el dominio de producción del proyecto (`VERCEL_PROJECT_PRODUCTION_URL`, que Vercel define solo) y en local `http://localhost:3000`.
+- `NEXT_PUBLIC_BASE_PATH`: solo si se publica en un subdirectorio. En Vercel no se usa.
 
 ## Estructura
 
